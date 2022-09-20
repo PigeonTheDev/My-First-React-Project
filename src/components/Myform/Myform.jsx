@@ -16,7 +16,7 @@ export const Myform = (props) => {
   };
 
   const onClickFormSubmit = () => {
-    props.onClick(mail + " " + pass);
+    props.onClick(mail + " " + pass); // nedense password u renderlamıyordu böyle yapınca renderladı
   };
 
   return (
