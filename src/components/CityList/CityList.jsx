@@ -5,12 +5,12 @@ import axios from "axios";
 export const CityList = (props) => {
   const [city, setCity] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const apikey = "";
   const getURLdata = async () => {
     setLoading(true);
     const url = `https://i3btr8wa1k.execute-api.eu-west-1.amazonaws.com/api/city`;
     let response = await axios.get(url, {
-      headers: { "X-Api-Key": "munAsYrYVw3xwKt8v9AOo2mpkTLf026U9mHSBf14" },
+      headers: { "X-Api-Key": apikey },
     });
     if (response.status === 200) {
       setLoading(false);
