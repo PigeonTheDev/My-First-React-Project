@@ -1,5 +1,5 @@
-import "./board.css";
-import { AgeEntry } from "../Age/ageinp";
+import "./Board.css";
+import { AgeEntry } from "../Age/AgeEntry";
 import { Myform } from "../Myform/Myform";
 import { useState } from "react";
 

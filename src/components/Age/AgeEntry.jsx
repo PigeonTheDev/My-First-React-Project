@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./ageinp.css";
+import "./AgeEntry.css";
 
 export const AgeEntry = (props) => {
   const [age, setAge] = useState(0);
