@@ -1,44 +1,41 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 
-export const CityList = (props) => {
-  const [city, setCity] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const getURLdata = async () => {
-    setLoading(true);
-    const url = `https://i3btr8wa1k.execute-api.eu-west-1.amazonaws.com/api/city`;
-    let response = await axios.get(url, {
+const fetchCities = async () => {
+  return axios
+    .get(`https://i3btr8wa1k.execute-api.eu-west-1.amazonaws.com/api/city`, {
       headers: { "X-Api-Key": "munAsYrYVw3xwKt8v9AOo2mpkTLf026U9mHSBf14" },
+    })
+    .then((response) => {
+      return response.data.data;
     });
-    if (response.status === 200) {
-      setLoading(false);
-    }
-    return response.data.data;
-  };
+};
 
-  const addCities = async () => {
-    const gottenCities = await getURLdata();
+export const CityList = () => {
+  const [city, setCity] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [show, setShow] = useState(false);
 
-    const cityNameList = [];
-    for (let i = 0; i < gottenCities.length; i++) {
-      cityNameList.push(gottenCities[i].name);
-      cityNameList.push(" ");
-    }
-    setCity(cityNameList);
-  };
+  useEffect(() => {
+    fetchCities()
+      .then((responseCities) => {
+        setCity(responseCities.map((a) => a.name));
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
-  const hideCities = () => {
-    setCity(" ");
-  };
+  if (loading) return <>Loading...</>;
+
+  if (show === false) {
+    return <button onClick={() => setShow(true)}>Show Cities</button>;
+  }
 
   return (
     <>
-      {loading && <div className="loading">Loading...</div>}
-      <button onClick={addCities}>Show Cities</button>
-      <button onClick={hideCities}>Hide Cities</button>
-      <h3>Cities: {city}</h3>
+      <h3>Cities: {city.join(", ")}</h3>
+      <button onClick={() => setShow(false)}>Hide Cities</button>
     </>
   );
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import "./Myform.css";
+import "./OurForm.css";
 
-export const Myform = (props) => {
+export const OurForm = (props) => {
   const [mail, setMail] = useState("");
 
   const [pass, setPass] = useState("");

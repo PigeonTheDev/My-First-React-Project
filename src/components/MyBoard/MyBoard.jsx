@@ -1,9 +1,10 @@
-import "./Board.css";
+import "./MyBoard.css";
 import { AgeEntry } from "../Age/AgeEntry";
-import { Myform } from "../Myform/Myform";
+import { OurForm } from "../OurForm/OurForm";
 import { useState } from "react";
+import { BGcolor } from "../BGcolor/BGcolor";
 
-export const Board = () => {
+export const MyBoard = () => {
   const [age, setAge] = useState(null);
   const [info, setInfo] = useState(null);
 
@@ -11,7 +12,9 @@ export const Board = () => {
     <>
       <AgeEntry onClick={setAge} />
 
-      <Myform onClick={setInfo} />
+      <OurForm onClick={setInfo} />
+
+      <BGcolor />
 
       <label>
         <h3>Your Age: {age}</h3>
